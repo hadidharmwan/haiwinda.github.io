@@ -1,0 +1,100 @@
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to top, #ff9a9e, #fecfef);
+    font-family: sans-serif;
+    overflow: hidden;
+}
+
+#balloon-container {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Style untuk balon */
+.balloon {
+    position: absolute;
+    bottom: -150px;
+    width: 100px;
+    height: 140px;
+    background: radial-gradient(circle at 30% 30%, #ff6090, #ff3c68);
+    border-radius: 50%;
+    transform-origin: bottom;
+    animation: float 8s ease-in-out forwards; /* Mengubah menjadi 'forwards' agar balon tetap mengambang */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    width: 3px;
+    height: 20px;
+    background-color: #fff;
+    transform: translateX(-50%);
+}
+
+/* Efek animasi meletus */
+.balloon-pop {
+    animation: pop 0.3s ease forwards;
+}
+
+@keyframes pop {
+    to {
+        transform: scale(0.2);
+        opacity: 0;
+    }
+}
+
+/* Animasi balon mengambang ke atas */
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-300px) scale(1);
+    }
+}
+
+/* Love dan kalimat romantis yang muncul saat balon meletus */
+.love-icon {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #ff6090;
+    opacity: 0;
+    animation: fade-in-out 1s ease forwards;
+}
+
+.love-message {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateY(50px);
+    font-size: 2rem;
+    color: #ff6090;
+    opacity: 0;
+    animation: fade-in-out 5s ease forwards;
+    animation-delay: 1s; /* Delay untuk menampilkan pesan setelah love icon */
+}
+
+@keyframes fade-in-out {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+    30% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    70% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+}
